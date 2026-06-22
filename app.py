@@ -832,10 +832,11 @@ with tab1:
             label_visibility="collapsed",
         )
 
-        qc_btn = st.button("开始审核", type="primary", key="qc_btn",
-                          disabled=not script_input.strip(), use_container_width=True)
+        qc_btn = st.button("开始审核", type="primary", key="qc_btn", use_container_width=True)
 
     with c2:
+        if qc_btn and not script_input.strip():
+            st.warning("请先粘贴需要审核的脚本内容", icon="⚠️")
         if qc_btn and script_input.strip():
             load_placeholder = st.empty()
             load_placeholder.markdown("""
@@ -920,11 +921,12 @@ with tab2:
             key="product",
         )
 
-        break_btn = st.button("拆解并生成新脚本", type="primary", key="break_btn",
-                             disabled=not (viral_note.strip() and product_choice.strip()), use_container_width=True)
+        break_btn = st.button("拆解并生成新脚本", type="primary", key="break_btn", use_container_width=True)
 
     with c2:
-        if break_btn and viral_note.strip():
+        if break_btn and not (viral_note.strip() and product_choice.strip()):
+            st.warning("请同时填写爆文内容和目标产品", icon="⚠️")
+        if break_btn and viral_note.strip() and product_choice.strip():
             load_placeholder = st.empty()
             load_placeholder.markdown("""
             <div class="loading-container">
