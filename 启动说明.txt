@@ -1,0 +1,51 @@
+============================================
+  言仓文创 KOL 内容品控工作台 — 换电脑指南
+============================================
+
+【方法一：U盘/网盘复制（推荐）】
+
+1. 把整个 yancang_dashboard 文件夹复制到新电脑
+
+2. 新电脑上安装 Python 3.8+
+   下载地址：https://www.python.org/downloads/
+   安装时勾选 "Add Python to PATH"
+
+3. 打开终端（Win+R → 输入 cmd → 回车），运行：
+   pip install streamlit openai
+
+4. 配置 DeepSeek API Key（三选一）：
+   A) 在 yancang_dashboard 文件夹里新建 API.txt，第一行粘贴你的 sk-xxx 密钥
+   B) 或者设置环境变量：set DEEPSEEK_API_KEY=sk-xxx
+   C) 或者在文件夹里新建 .env 文件，写入 DEEPSEEK_API_KEY=sk-xxx
+
+5. 终端进入 yancang_dashboard 文件夹，运行：
+   streamlit run app.py
+
+6. 浏览器打开 http://localhost:8501
+
+
+【方法二：GitHub 同步（如果能连上）】
+
+1. 新电脑安装 Git 和 Python
+2. git clone https://github.com/Jason-xie-666/yancang-kol-dashboard.git
+3. pip install streamlit openai
+4. 配置 API Key（同方法一步骤4）
+5. streamlit run app.py
+
+
+【项目文件说明】
+
+app.py           — 前端页面（Streamlit）
+ai_tools.py      — AI 调用逻辑（调性审核 + 爆文拆解）
+examples.txt     — 言仓爆款范例（AI 学习素材）
+products.txt     — 产品线信息
+竞品爆文.txt     — 竞品爆文参考
+static/          — 图片文件夹（轮播图/产品图/日历图）
+
+
+【换图片】
+
+替换 static/ 文件夹里的同名文件即可：
+  slide1.jpg ~ slide3.jpg  — Hero 轮播
+  products/prod1.jpg ~     — 产品图库
+  calendar/cal1.jpg ~      — 日历专区

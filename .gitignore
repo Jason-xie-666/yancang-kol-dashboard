@@ -1,0 +1,29 @@
+# 敏感文件
+API.txt
+.env
+cookie.txt
+xhs_login.py
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Streamlit
+.streamlit/secrets.toml
+
+# 临时文件
+debug_*.py
+debug_*.html
+debug_*.png
+
+# 图片源文件（已复制到 static/，原位置的不需要上传）
+*.jpg
+*.png
+!static/**/*.jpg
+!static/**/*.png
+
+# 其他
+streamlit_ui_template/
+日历图片/
+setup_images.py
