@@ -77,6 +77,10 @@ if not os.path.exists(_EXAMPLES_PATH):
 BRAND_INFO = _load_file(_PRODUCTS_PATH)
 EXAMPLES = _load_file(_EXAMPLES_PATH)
 
+# 补充素材：言仓官方文案 + 达人爆款笔记（用户持续更新）
+_SUPPLEMENT_PATH = os.path.join(_BASE_DIR, "补充素材.txt")
+SUPPLEMENT = _load_file(_SUPPLEMENT_PATH)
+
 
 # ============================================================
 # 底层调用封装
@@ -154,6 +158,9 @@ def tone_check(script_content: str) -> dict:
 # 言仓爆款笔记参考（这才是"言仓味"的唯一标准）
 {EXAMPLES}
 
+# 言仓官方文案 & 达人笔记补充素材（学习这些真实文案的语气、节奏、卖点表达）
+{SUPPLEMENT}
+
 # 审核标准
 加分项（+分）：
 - 有个人真实感受，用"我觉得""对我来说"等口语化表达
@@ -225,6 +232,9 @@ def hot_note_break(note_content: str, product_name: str) -> dict:
 
 # 言仓爆款笔记参考（这才是"言仓味"的唯一标准）
 {EXAMPLES}
+
+# 言仓官方文案 & 达人笔记补充素材（学习这些真实文案的语气、节奏、卖点表达）
+{SUPPLEMENT}
 
 # 小红书爆款公式分类（你必须先识别原文属于哪一种）
 
