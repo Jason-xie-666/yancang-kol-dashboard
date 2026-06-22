@@ -852,8 +852,10 @@ with tab1:
                 badge, verdict = "score-high", "通过 · 可直接发布"
             elif score >= 50:
                 badge, verdict = "score-mid", "待调整 · 微调后发布"
-            else:
+            elif score >= 30:
                 badge, verdict = "score-low", "不通过 · 需大幅改写"
+            else:
+                badge, verdict = "score-low", "内容不相关 · 无法审核"
 
             # 分数 + 结论
             st.markdown(f"""
@@ -873,11 +875,19 @@ with tab1:
                 for p in problems:
                     st.markdown(f'<div class="problem-item"><span class="dot"></span><span>{p}</span></div>', unsafe_allow_html=True)
 
-            # 润色版
-            revised = result.get("revised_script", "")
-            if revised and "失败" not in revised:
-                st.markdown('<p style="font-size:0.82rem;font-weight:600;color:#3d3226;margin:1rem 0 0.5rem;">润色后版本</p>', unsafe_allow_html=True)
-                st.markdown(f'<div class="script-card">{revised}</div>', unsafe_allow_html=True)
+            # 润色版（低分不相关的内容不展示润色）
+            if score >= 30:
+                revised = result.get("revised_script", "")
+                if revised and "失败" not in revised:
+                    st.markdown('<p style="font-size:0.82rem;font-weight:600;color:#3d3226;margin:1rem 0 0.5rem;">润色后版本</p>', unsafe_allow_html=True)
+                    st.markdown(f'<div class="script-card">{revised}</div>', unsafe_allow_html=True)
+            else:
+                st.markdown("""
+                <div style="text-align:center;padding:1.5rem;color:#b8a894;">
+                    <p style="font-size:0.88rem;margin:0;">⚠️ 内容与言仓产品无关，无法生成润色版本</p>
+                    <p style="font-size:0.78rem;margin:0.3rem 0 0 0;">请粘贴正经的小红书种草脚本</p>
+                </div>
+                """, unsafe_allow_html=True)
         else:
             st.markdown("""
             <div class="empty-guide">
